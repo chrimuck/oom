@@ -4,7 +4,8 @@ namespace phones
 {
 	public class Phone : Device
 	{
-		
+
+
 		// preis/wert -> privates feld
 		private decimal m_preis;
 		private string abteilung;

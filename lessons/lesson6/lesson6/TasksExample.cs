@@ -44,7 +44,7 @@ namespace lesson6
             }
 
             var cts = new CancellationTokenSource();
-            var primeTask = ComputePrimes(cts.Token);
+            //var primeTask = ComputePrimes(cts.Token);
 
             ReadLine();
             cts.Cancel();

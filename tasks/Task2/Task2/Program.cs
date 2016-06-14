@@ -6,10 +6,13 @@ namespace Task2
 	{
 		public static void Main (string[] args)
 		{
+
+			decimal x = 7.28m;
+
 			var mitarbeiter = new[]
 			{
-				new Mitarbeiter("Herbert", "Prohaska", "Fussball"),
-				new Mitarbeiter("Werner", "Faymann", "Politik"),
+				new Mitarbeiter("Herbert", "Prohaska", "Fussball", 728.9m),
+				new Mitarbeiter("Werner", "Faymann", "Politik", 22.3m),
 
 			};
 
@@ -26,6 +29,9 @@ namespace Task2
 
 				Console.WriteLine($"Vorname={m.Vorname} | Nachname={m.Nachname} | Abteilung={m.Abteilung}");
 			}
+
+
+
 		}
 
 

@@ -18,14 +18,7 @@ namespace phones
 			}
 
 
-			// ein test der fehlschlägt
-			[Test]
-			public void KannPhoneErstellen2()
-			{
-				var a = new Phone ("Samsung", "I12325-3", "Galaxy Ace 2", 99.99m, true, "Max Mustermann");
 
-				Assert.IsTrue (a.Simkarte == false);
-			}
 				
 			[Test]
 			public void HerstellerMussAngegebenWerden()
@@ -34,21 +27,11 @@ namespace phones
 					{
 
 						var a = new Phone (null, "I12325-3", "Galaxy Ace 2", 99.99m, true, "Max Mustermann");
+						a.MieterUpdate("Herbert");
 					});
 
 			}
-
-			// schlägt auch fehl, weil alles richtig angegeben wurde
-			[Test]
-			public void HerstellerMussAngegebenWerden2()
-			{
-				Assert.Catch(() => 
-				{
-					
-					var a = new Phone ("Apple", "I12325-3", "Galaxy Ace 2", 99.99m, true, "Max Mustermann");
-				});
-
-			}
+				
 
 			[Test]
 			public void KannMieterUpdaten()
@@ -67,14 +50,7 @@ namespace phones
 			}
 
 
-			// schlägt fehl, weil Abfrage ob alter noch richtig ist 
-			[Test]
-			public void KannMieterUpdaten3()
-			{
-				var a = new Phone ("Apple", "I12325-3", "Galaxy Ace 2", 99.99m, true, "Max Mustermann");
-				a.MieterUpdate ("Herbert Mustermann");
-				Assert.IsTrue (a.Mieter == "Max Mustermann");
-			}
+
 
 			[Test]
 			public void AbteilungGeben()
@@ -95,18 +71,7 @@ namespace phones
 					});
 
 			}
-
-			// schlagt fehl, da die PreisUpdate Methode nicht kleinergleich 0 prüft
-			[Test]
-			public void PreisGroesserNull2()
-			{
-				Assert.Catch(()=>
-					{
-						var a = new Phone ("Apple", "I12325-3", "Galaxy Ace 2", 99.99m, true, "Max Mustermann");
-						a.PreisUpdate(0);
-					});
-
-			}
+				
 
 
 

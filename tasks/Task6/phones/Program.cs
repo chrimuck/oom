@@ -2,6 +2,10 @@
 using System.Linq;
 using System.IO;
 using Newtonsoft.Json;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace phones
 {
@@ -57,13 +61,13 @@ namespace phones
 			// LESSON 4
 
 			// Json Convert mit schöner Formatierung + Testausgabe
-			string write = JsonConvert.SerializeObject (phones, Formatting.Indented);
+			var settings = new JsonSerializerSettings() { Formatting = Formatting.Indented, TypeNameHandling = TypeNameHandling.Auto };
+			string write = JsonConvert.SerializeObject (devices, settings);
 			Console.WriteLine ("---read from json object---");
 			Console.WriteLine(write);
 
 			// Pfad definieren, und anschließend oben erzeugtes in Json-Datei auf Desktop schreiben
-			var path = Directory.GetCurrentDirectory();
-			// ergibt pfad Task4/phones/bin/Debug
+			var path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 			path = Path.Combine (path, "test.json");
 			File.WriteAllText (path, write);
 
@@ -72,16 +76,31 @@ namespace phones
 			string readFile = File.ReadAllText (path);
 
 			// andere Richtung -> von dem readFile lesen und dann zb die Hersteller listen
-			var output = JsonConvert.DeserializeObject<Phone[]>(readFile);
+			var output = JsonConvert.DeserializeObject<Device[]>(readFile, settings);
 			Console.WriteLine ("---read hersteller from file---");
 			foreach (var x in output) {
-				Console.WriteLine (x.Hersteller);
+				Console.WriteLine (x.Typ);
 			}
 
 			// oder wieder alles listen - also quasi json file 1 zu 1 ausgeben
-			var read = JsonConvert.DeserializeObject (readFile);
-			Console.WriteLine ("---read from file---");
-			Console.WriteLine(read);
+//			var read = JsonConvert.DeserializeObject (readFile);
+//			Console.WriteLine ("---read from file---");
+//			Console.WriteLine(read);
+
+
+			//Task 6.1
+			//Push.Run();
+
+			//Task 6.2 
+			var asynchron = new Async();
+			Console.WriteLine ("Async wurde gestartet");
+			asynchron.kurz ();
+			while (asynchron.istFertig == false) {
+				Console.WriteLine (".");
+				Thread.Sleep (100);
+			}
+
+
 
 				
 		}

@@ -6,7 +6,7 @@ namespace Task2
 	{
 		
 			// gehalt -> logischerweise private
-			private decimal gehalt;
+			private decimal m_gehalt;
 
 			// Vorname -> read only 
 			public String Vorname { get; }
@@ -17,7 +17,19 @@ namespace Task2
 			// Abteilung -> read + write (kann sich ändern)
 			public String Abteilung { get; set;}
 
-		public Mitarbeiter (string newVorname, string newNachname, string newAbteilung)
+		public decimal Gehalt
+		{
+			get
+			{
+				return m_gehalt;
+			}
+			set
+			{
+				
+			}
+		}
+
+		public Mitarbeiter (string newVorname, string newNachname, string newAbteilung, decimal newGehalt)
 			{
 
 			if (string.IsNullOrWhiteSpace(newVorname)) 
